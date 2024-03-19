@@ -40,3 +40,27 @@ jobs:
       run: npx playwright install
     - name: Run Playwright tests    
       run: npm run test-ui
+
+  deploy-be:
+      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/main'
+      needs: build_and_test
+      steps:
+      - name: Deploy backend to production    
+        uses: johnbeynon/render-deploy-action@0.0.8
+        with:
+            service-id: ${{ secrets.RENDER_SERVICE_BE_ID }}
+            api-key: ${{ secrets.RENDER_API_KEY }}
+            wait-for-success: true
+
+  deploy-fe:
+      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/main'
+      needs: deploy-be
+      steps:
+      - name: Deploy fronend to production    
+        uses: johnbeynon/render-deploy-action@0.0.8
+        with:
+            service-id: ${{ secrets.RENDER_SERVICE_FE_ID }}
+            api-key: ${{ secrets.RENDER_API_KEY }}
+            wait-for-success: true

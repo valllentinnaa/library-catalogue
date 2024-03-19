@@ -28,6 +28,8 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm install
+    - name: Replace the config settings
+      run: echo "export const settings = { host:\"http:\\\localhost:3000\"}" > src/config.js
     - name: Start backend
       run: npm run start-be &
     - name: Wait for backend to start

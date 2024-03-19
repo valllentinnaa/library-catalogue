@@ -47,7 +47,7 @@ jobs:
       needs: build_and_test
       steps:
       - name: Deploy backend to production    
-        uses: johnbeynon/render-deploy-action@0.0.8
+        uses: johnbeynon/render-deploy-action@v0.0.8
         with:
             service-id: ${{ secrets.RENDER_SERVICE_BE_ID }}
             api-key: ${{ secrets.RENDER_API_KEY }}

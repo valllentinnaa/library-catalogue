@@ -59,7 +59,7 @@ jobs:
       needs: deploy-be
       steps:
       - name: Deploy fronend to production    
-        uses: johnbeynon/render-deploy-action@0.0.8
+        uses: johnbeynon/render-deploy-action@v0.0.8
         with:
             service-id: ${{ secrets.RENDER_SERVICE_FE_ID }}
             api-key: ${{ secrets.RENDER_API_KEY }}
